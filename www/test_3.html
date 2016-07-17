@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var pop = React.class({
+        constructor: function() {this.elem=[{tag:'p',children:'ciao'},{tag:'p',children:'ciao'}];},
+        funaddp: function() { this.elem.push({tag:'p',children:'ciao'}); },
+        render: function() {
+            return [ {tag: 'div', children:this.elem},
+                {tag: 'button',attrs: { onClick: this.funaddp} , children: 'add' }]
+        }
+    });
+    React.render(pop, document.getElementById("a"));
+
+    var counter = React.class({
+        constructor: function() { this.count = 0; },
+        onClick: function(event) { this.count += 1; },
+        render: function() {
+            return [ { tag: 'span', children: this.count },
+                { tag: 'button',
+                    attrs: { onClick: this.onClick },
+                    children: 'Increment' } ]
+        }
+    });
+    React.render(counter, document.getElementById("a"));
+
+
+    var counter1 = React.class({
+        constructor: function() { this.count = 0; this.tex = "hello";this.elem=[{tag:'p',children:'ciao'}];},
+        fun: function() { this.count += 1; },
+        funaddp: function() { this.elem.push({tag:'p',children:'ciao'}); },
+        funtext: function() { this.tex += "hello"; },
+        render: function() {
+            return [ {tag: 'div', children:this.elem},
+                {tag: 'button',attrs: { onClick: this.funaddp} , children: 'add' }]
+        }
+    });
+    React.render(counter1, document.getElementById("b"));
+
+
+    var counter2 = React.class({
+        constructor: function() {
+            this.color = "red";
+        },
+        fun: function() {
+            this.color = this.color=="blue"?'red':'blue';
+        },
+        render: function() {
+            return [{
+                tag: 'span',
+                attrs: {
+                    class: this.color
+                },
+                children: "hello word"
+            }, {
+                tag: 'button',
+                attrs: {
+                    onClick: this.fun
+                },
+                children: 'color'
+            }]
+        }
+    });
+
+    //React.render(counter2, document.getElementById("c"));
+
+
+    var counter3 = React.class({
+        constructor: function() { this.count = 0;this.tex = "";},
+        fun: function() { this.count += 1;},
+        //funaddp: function(event) { this.elem.push({tag:'p',children:'ciao'});  console.log(event);},
+        funtext: function() { this.tex += "hello"; },
+        render: function() {
+            return counter2
+        }
+    });
+    React.render(counter3, document.getElementById("d"));
+</script>
+
+</body>
+</html>

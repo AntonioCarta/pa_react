@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="../src/react_component.js" ></script>
+
+<p id="a"></p>
+
+<script>
+    var pop = R.createClass({
+        constructor: function() {this.elem=[{tag:'p',children:'ciao'},{tag:'p',children:'ciao'}];},
+        funaddp: function() { this.elem.pop(); },
+        render: function() {
+            return [ {tag: 'div', children:this.elem},
+                {tag: 'button',attrs: { onClick: R.create_handler(this, "funaddp")} , children: 'add' }]
+        }
+    });
+    //R.render(pop, document.getElementById("a"));
+    R.fast_render(pop, document.getElementById("a"));
+
+
+    var counter = R.createClass({
+        constructor: function() { this.count = 0; },
+        onClick: function(event) { this.count += 1; },
+        render: function() {
+            return [ { tag: 'span', children:[{ tag: 'span', children: { tag: 'span', children: this.count } }]},
+                { tag: 'button',
+                    attrs: { onClick: R.create_handler(this, "onClick") },
+                    children: 'Increment' } ]
+        }
+    });
+    //React.render(counter, document.getElementById("a"));
+</script>
+
+</body>
+</html>

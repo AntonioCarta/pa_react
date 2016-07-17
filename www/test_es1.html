@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<script type="text/javascript" src="../src/react_component.js" ></script>
+
+<p></p>
+
+<p id="comp"></p>
+
+<script type="text/javascript">
+{
+    var comp = R.createClass({
+    constructor: function() { this.count = 0},
+    onClick: function(event) { this.count += 1; },
+    render: function() {
+        return [
+            { tag: 'span', children: this.count },
+            { tag: 'button', attrs: { onClick: this.onClick },
+                children: 'Increment1' },
+            { tag: 'button', attrs: { onClick: this.onClick },
+                children: 'Increment2' },
+            { tag: 'button', attrs: { onClick: this.onClick },
+                children: 'Increment3' }];
+    }});
+    console.log("\nrendering.");
+    R.fast_render(comp, document.getElementById("comp"));
+    R.fast_render(comp, document.getElementById("comp"));
+
+    <!-- Change children list and attribute list. -->
+    comp.render = function() {
+        return [
+            { tag: 'span', children: this.count },
+            { tag: 'button', attrs: { id: 123 },
+                children: 'Increment1' }]
+     };
+
+    R.fast_render(comp, document.getElementById("comp"));
+}
+</script>
+
+</body>
+</html>
+
+
